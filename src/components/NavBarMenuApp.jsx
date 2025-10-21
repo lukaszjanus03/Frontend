@@ -1,5 +1,5 @@
 import { Navbar, Nav, Container } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom'; // Upewnij się, że ten import jest dodany
+import { NavLink } from 'react-router-dom'; 
 
 function NavBarMenuApp() {
   return (
@@ -11,7 +11,7 @@ function NavBarMenuApp() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            {/* Linki zmodyfikowane, aby używać NavLink */}
+            {}
             <Nav.Link as={NavLink} to="/home">
               Home
             </Nav.Link>
@@ -20,6 +20,9 @@ function NavBarMenuApp() {
             </Nav.Link>
             <Nav.Link as={NavLink} to="/lab02">
               Laboratorium 2
+            </Nav.Link>
+            <Nav.Link as={NavLink} to="/lab03">
+              Laboratorium 3
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
