@@ -1,14 +1,20 @@
 import NavBarMenuApp from "../components/NavBarMenuApp";
 import FooterApp from "../components/FooterApp";
-import { Outlet} from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import { Container } from "react-bootstrap"; 
 
-function RootLayout({ children }) {
+function RootLayout() {
   return (
     <>
       <NavBarMenuApp />
-      <Outlet/>
+      <main className="py-3">
+        <Container>
+          <Outlet />
+        </Container>
+      </main>
       <FooterApp />
     </>
   );
 }
+
 export default RootLayout;

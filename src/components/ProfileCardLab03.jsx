@@ -1,10 +1,19 @@
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import AppContext from '../data/AppContext';
 import { Button, ButtonGroup } from 'react-bootstrap';
 import ProfileParagraph from "./ProfileParagraph";
 import RatingBar from './RatingBar';
 
-// Komponent, tak jak przygotowaliśmy w Zadaniu 7, przyjmuje 'person' i 'dispatch'
-function ProfileCardLab03({ person, dispatch }) {
-  const { id, name, email, phone, birthDate, rating } = person;
+function ProfileCardLab03({ person }) {
+  const { dispatch } = useContext(AppContext);
+  const navigate = useNavigate();
+
+  const { id, name, email, phone, birthDate, rating, placeOfBirth, role } = person;
+
+  const handleEditClick = () => {
+    navigate(`/lab04/edit/${id}`);
+  };
 
   return (
     <div className={`card shadow-sm text-center p-4 mb-4 ${person.checked ? 'border-success border-3' : ''}`} style={{ width: "18rem" }}>
@@ -12,6 +21,8 @@ function ProfileCardLab03({ person, dispatch }) {
         <h4 className="card-title mb-4 text-primary">Profil użytkownika</h4>
 
         <ProfileParagraph label="Imię" title={name} />
+        <ProfileParagraph label="Rola" title={role} />
+        <ProfileParagraph label="Miejsce urodzin" title={placeOfBirth} />
         <ProfileParagraph label="Email" title={email} />
         <ProfileParagraph label="Telefon" title={phone} />
         <ProfileParagraph label="Data urodzin" title={birthDate} />
@@ -20,49 +31,27 @@ function ProfileCardLab03({ person, dispatch }) {
         <RatingBar rate={rating} />
 
         <ButtonGroup className="mt-auto">
-          {/* Przycisk Edit pozostaje bez zmian, zgodnie z poleceniem */}
-          <Button variant="secondary" size="sm" onClick={() => alert(`Edycja osoby ID: ${id}`)}>
+          <Button variant="secondary" size="sm" onClick={handleEditClick}>
             Edit
           </Button>
-
-          {/* Przycisk Check wysyła akcję typu 'check' z ID osoby */}
           <Button
             variant="success"
             size="sm"
-            onClick={() => {
-              dispatch({
-                type: "check",
-                payload: { id: id } // Używamy payload do przekazywania danych
-              });
-            }}
+            onClick={() => dispatch({ type: "check", payload: { id: id } })}
           >
             Check
           </Button>
-
-          {/* Przycisk Rate wysyła akcję typu 'rate' z ID osoby */}
           <Button
             variant="info"
             size="sm"
-            onClick={() => {
-              dispatch({
-                type: "rate",
-                payload: { id: id }
-              });
-            }}
+            onClick={() => dispatch({ type: "rate", payload: { id: id } })}
           >
             Rate
           </Button>
-
-          {/* Przycisk Delete wysyła akcję typu 'delete', dokładnie jak w przykładzie */}
           <Button
             variant="danger"
             size="sm"
-            onClick={() => {
-              dispatch({
-                type: "delete",
-                payload: { id: id }
-              });
-            }}
+            onClick={() => dispatch({ type: "delete", payload: { id: id } })}
           >
             Delete
           </Button>
