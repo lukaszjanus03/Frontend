@@ -1,9 +1,10 @@
-import { useContext } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import AppContext from '../data/AppContext';
+import useData from '../data/useData'; 
 
 function GridContainer({ element }) {
-  const { items, dispatch } = useContext(AppContext);
+  // Zastępujemy useContext
+  const items = useData(); 
+  // const { items, dispatch } = useContext(AppContext);
 
   const ElementComponent = element;
 

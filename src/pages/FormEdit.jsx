@@ -1,12 +1,13 @@
 import { Button, Form, FormControl, FormText, Alert } from "react-bootstrap";
-import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useParams, useNavigate } from "react-router-dom";
-import AppContext from "../data/AppContext";
+import useData from "../data/useData"; 
+import useDispatch from "../data/useDispatch";
 
 function FormEdit() {
   const { id } = useParams();
-  const { items, dispatch } = useContext(AppContext);
+  const items = useData();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const personToEdit = items.find(p => p.id == id); 

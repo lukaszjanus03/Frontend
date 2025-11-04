@@ -1,12 +1,11 @@
-import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import AppContext from '../data/AppContext';
+import useDispatch from '../data/useDispatch'; 
 import { Button, ButtonGroup } from 'react-bootstrap';
 import ProfileParagraph from "./ProfileParagraph";
 import RatingBar from './RatingBar';
 
 function ProfileCardLab03({ person }) {
-  const { dispatch } = useContext(AppContext);
+  const dispatch = useDispatch(); 
   const navigate = useNavigate();
 
   const { id, name, email, phone, birthDate, rating, placeOfBirth, role } = person;

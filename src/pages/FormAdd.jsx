@@ -1,6 +1,7 @@
 import { Button, Form, FormControl, FormText, Alert } from "react-bootstrap";
-import { useState, useContext } from "react";
-import AppContext from "../data/AppContext";
+import { useState } from "react";
+import useData from "../data/useData"; 
+import useDispatch from "../data/useDispatch";
 import { useNavigate } from "react-router-dom";
 
 const nameField = "name";
@@ -13,7 +14,10 @@ const placeOfBirthField = "placeOfBirth";
 function FormAdd() {
   const [errors, setErrors] = useState([]);
   const [isSending, setSending] = useState(false);
-  const { items, dispatch } = useContext(AppContext);
+  const items = useData();
+  const dispatch = useDispatch();
+
+  
   const navigate = useNavigate();
 
   const onSubmitFunction = async (e) => {
